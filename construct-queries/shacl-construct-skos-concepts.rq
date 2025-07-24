@@ -1,0 +1,56 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX iss: <http://data.europa.eu/949/iss/>
+PREFIX iss-sh: <http://data.europa.eu/949/iss/shapes/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX sh: <http://www.w3.org/ns/shacl#> 
+PREFIX era: <http://data.europa.eu/949/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX list: <http://jena.apache.org/ARQ/list#>
+
+construct {
+    iss-sh:SafetyLevelPerTypeOfOperationShape sh:property ?shapeUri .
+    ?shapeUri a sh:PropertyShape ;
+			era:affectedProperty ?property;
+		    era:affectedClass iss:SafetyLevelPerTypeOfOperation;
+    		era:scope "local";
+    		rdfs:comment ?comment ;
+#            sh:path (rdf:type [sh:inversePath rdfs:domain] era:inSkosConceptScheme) ; # Alternative 1
+#      		sh:equals (?property skos:inScheme);
+    		sh:path (?property skos:inScheme); # Alternative 2
+    		sh:hasValue ?scheme ;
+            sh:severity sh:violation;
+    		sh:message ?message.
+}
+#select * 
+where { GRAPH <http://data.europa.eu/949/iss/graph/dev/ontology> {
+    ?property a owl:ObjectProperty ;
+        rdfs:range skos:Concept;
+    	era:inSkosConceptScheme ?scheme.
+    {?property rdfs:domain iss:SafetyLevelPerTypeOfOperation.}
+    UNION
+    {?property rdfs:domain [owl:unionOf (?other iss:SafetyLevelPerTypeOfOperation)].}
+    UNION
+    {?property rdfs:domain [owl:unionOf (?other ?another iss:SafetyLevelPerTypeOfOperation)].}
+    OPTIONAL {?property rdfs:comment ?comment.}
+    BIND( URI(CONCAT("http://data.europa.eu/949/iss/shapes/",
+                UCASE(SUBSTR(REPLACE(STR(?property), ".*(\\/|#){1}(\\w*)","$2"),1,1)),
+                SUBSTR(REPLACE(STR(?property), ".*(\\/|#){1}(\\w*)","$2"),2),
+    			"SKOS"
+            		)
+        	  ) AS ?shapeUri)
+    BIND( CONCAT(
+            REPLACE(STR(?property), ".*(\\/|#){1}(\\w*)","$2"),
+            ": The safety level per type of operation has a ",
+            REPLACE(STR(?property), ".*(\\/|#){1}(\\w*)","$2"),
+            " value that is not one of the predefined values and cannot be converted into a SKOS concept on this list: ",
+            STR(?scheme),
+			"."@en
+        		) AS ?message)
+    FILTER NOT EXISTS {?property owl:deprecated "true"^^xsd:boolean}
+  }.}
+                
+                
+                
+                

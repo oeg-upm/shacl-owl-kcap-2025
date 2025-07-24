@@ -1,0 +1,47 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX iss: <http://data.europa.eu/949/iss/>
+PREFIX iss-sh: <http://data.europa.eu/949/iss/shapes/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX sh: <http://www.w3.org/ns/shacl#> 
+PREFIX era: <http://data.europa.eu/949/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT {
+    iss-sh:SimpleReportSafetyRelatedEventShape sh:property ?shapeUri .
+    ?shapeUri a sh:PropertyShape ;
+    	rdfs:comment ?comment ;
+        sh:path ?property;
+        sh:class ?range;
+        sh:severity sh:violation;
+    	sh:message ?message.
+}
+#select * 
+WHERE { 
+  GRAPH <http://data.europa.eu/949/iss/graph/dev/ontology> {
+    ?property a owl:ObjectProperty ;
+        rdfs:range ?range;
+    	# Direct or with a RDF list
+    	rdfs:domain/owl:unionOf/rdf:rest*/rdf:first | rdfs:domain iss:SimpleReportSafetyRelatedEvent .
+        
+    OPTIONAL {?property rdfs:comment ?comment.}
+        
+    BIND(REPLACE(STR(?property), ".*(\\/|#){1}(\\w*)", "$2") AS ?propertyName)
+    BIND(REPLACE(STR(?range), ".*(\\/|#){1}(\\w*)", "$2") AS ?rangeName)   
+    
+    # Shape URI
+    BIND(URI(CONCAT(
+        "http://data.europa.eu/949/iss/shapes/",
+        UCASE(SUBSTR(?propertyName, 1, 1)),
+        SUBSTR(?propertyName, 2)
+    )) AS ?shapeUri)
+
+    # Message
+    BIND(STRLANG(CONCAT(?propertyName, ": The safety related event has a ", ?propertyName,
+        " that must be a ", ?rangeName, "."), "en")
+    AS ?message)
+        
+    FILTER(?range != skos:Concept)
+    FILTER NOT EXISTS {?property owl:deprecated "true"^^xsd:boolean}
+  }
+}

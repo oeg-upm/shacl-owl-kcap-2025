@@ -1,0 +1,47 @@
+Test 1
+open
+# Execution of OWL2SHACL "open" ruleset ontology without additional constraints
+era:Track  rdf:type  rdfs:Class , sh:NodeShape ;
+    sh:property 
+    era:Track_minimumWheelDiameter, 
+    era:Track_trackDirection, 
+    era:Track_hasEtcsLevel.
+era:Track_minimumWheelDiameter
+    rdf:type     sh:PropertyShape ;
+    sh:datatype  xsd:integer ;
+    sh:maxCount  1 ;
+    sh:path      era:minimumWheelDiameter .
+era:Track_trackDirection
+    rdf:type     sh:PropertyShape ;
+    sh:class     skos:Concept ;
+    sh:maxCount  1 ;
+    sh:path      era:trackDirection .
+era:Track_hasEtcsLevel
+    rdf:type  sh:PropertyShape ;
+    sh:class  era:ETCSLevel ;
+    sh:path   era:hasEtcsLevel .
+
+
+Test 2
+# Execution of OWL2SHACL "semi-closed" ontology without additional constraints
+era:Track  rdf:type  rdfs:Class , sh:NodeShape ;
+    sh:property 
+    era:Track_minimumWheelDiameter, 
+    era:Track_trackDirection, 
+    era:Track_hasEtcsLevel.
+era:minimumWheelDiameter-shape
+    rdf:type             sh:NodeShape ;
+    sh:class             era:Track ;
+    sh:targetSubjectsOf  era:minimumWheelDiameter .
+era:Track_trackDirection
+    rdf:type     sh:PropertyShape ;
+    sh:class     skos:Concept ;
+    sh:maxCount  1 ;
+    sh:path      era:trackDirection .
+era:Track_hasEtcsLevel
+    rdf:type  sh:PropertyShape ;
+    sh:class  era:ETCSLevel ;
+    sh:path   era:hasEtcsLevel .
+
+
+

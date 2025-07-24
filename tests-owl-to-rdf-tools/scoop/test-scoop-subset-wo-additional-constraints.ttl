@@ -1,0 +1,678 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix gsp: <http://www.opengis.net/ont/geosparql#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs1: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://astrea.linkeddata.es/shapes#0276fc6476b977b4ad76b1a9d141ce8e> a sh:NodeShape ;
+    rdfs:label "Track"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA400.htm> ;
+    sh:description "A running track that is used for train service movements."@en ;
+    sh:name "Track"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#01ed9f28cac5529dac386d0f4f9bc3e0>,
+        <https://astrea.linkeddata.es/shapes#0939a93e556f2075c634cc048b100271>,
+        <https://astrea.linkeddata.es/shapes#0ba33671906d9f55b4cd74004e12ebfb>,
+        <https://astrea.linkeddata.es/shapes#1156168d9707500402e4dfc808a6ce76>,
+        <https://astrea.linkeddata.es/shapes#129fd08e2db8267b2e3495804a860bcc>,
+        <https://astrea.linkeddata.es/shapes#1776c65dacefb9076565b31aa3759044>,
+        <https://astrea.linkeddata.es/shapes#3a1840a71759183afb146eeb729aedac>,
+        <https://astrea.linkeddata.es/shapes#3fec82b896780b9006a9dc87f2832b20>,
+        <https://astrea.linkeddata.es/shapes#42197fb8215e90bad23c52db897a2187>,
+        <https://astrea.linkeddata.es/shapes#6e83b234d22ccd8dd8ff90881e4c1580>,
+        <https://astrea.linkeddata.es/shapes#97346b29f9e8e50d6cd9b5d35df5ba70>,
+        <https://astrea.linkeddata.es/shapes#b33e06a11276058e45ebadcf99eae61c>,
+        <https://astrea.linkeddata.es/shapes#eca43d93a2d42f99922b8e492e5e48d8> ;
+    sh:targetClass era:Track .
+
+<https://astrea.linkeddata.es/shapes#04b3f78711c12bf06d7853d11d40da9c> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass foaf:Project .
+
+<https://astrea.linkeddata.es/shapes#08c69bad2738c87ba8bd03d8d9f72ff5> a sh:NodeShape ;
+    rdfs:label "ETCS Level"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "ERTMS / ETCS application level related to the track side equipment."@en ;
+    sh:name "ETCS Level"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#2ea1da6023fb9abcf22f722c2f9912da>,
+        <https://astrea.linkeddata.es/shapes#8ec3df6128b290bfc40e0811a9b0d3d5> ;
+    sh:targetClass era:ETCSLevel .
+
+<https://astrea.linkeddata.es/shapes#243a6fef650ffe66d349d33dab497039> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass <http://schema.org/CreativeWork>,
+        foaf:Document .
+
+<https://astrea.linkeddata.es/shapes#2cb597e49a73be25b5f0cf133ac4e9e5> a sh:PropertyShape ;
+    rdfs:label "Operating language"@en,
+        "The language or languages used in daily operation by infrastructure manager and published in its Network Statement, for the communication of operational or safety related messages between the staff of the infrastructure manager and the railway undertaking."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description "The language or languages used in daily operation by infrastructure manager and published in its Network Statement, for the communication of operational or safety related messages between the staff of the infrastructure manager and the railway undertaking."@en ;
+    sh:name "Operating language"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:operatingLanguage .
+
+<https://astrea.linkeddata.es/shapes#30d990e93e70b34a354986f72aa1b7df> a sh:NodeShape ;
+    rdfs:label "Infrastructure object"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA246.htm> ;
+    sh:description """This class encompasses all those classes that represent features that are  implemented in the European railway infrastructure. It is a subclass of the ERA Feature that has a spatial representation. It covers tracks, platforms, signals, tunnels, operational points, and sections of line.
+A feature that belongs to the infrastructure can be abstracted (hasAbstraction) as a topological object. It also is related to the infrastructure manager through the property infrastructureMgr."""@en ;
+    sh:name "Infrastructure object"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#3bd7dd0cdd64bc5cbfb89117f66a077f>,
+        <https://astrea.linkeddata.es/shapes#c5cef7a799b59419e4eeffcd691b8782>,
+        <https://astrea.linkeddata.es/shapes#fad207bf6f6a3cb708c549f5922b19bb> ;
+    sh:targetClass era:InfrastructureObject .
+
+<https://astrea.linkeddata.es/shapes#3b1fed4016ea3410e7b39f0cf0331513> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass foaf:Agent .
+
+<https://astrea.linkeddata.es/shapes#3ef793712378e097aac823894a277e63> a sh:NodeShape ;
+    rdfs:label "Point" ;
+    sh:description """ 
+Uniquely identified by lat/long/alt. i.e.
+
+spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
+  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
+
+sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
+  """,
+        """A point, typically described using a coordinate system relative to Earth, such as WGS84.
+  """ ;
+    sh:name "Point" ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass wgs1:Point .
+
+<https://astrea.linkeddata.es/shapes#46d402e83cfb35cbae8c49868c56e7c7> a sh:NodeShape ;
+    rdfs:label "Manufacturer"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "A company or organization that manufactures vehicles."@en ;
+    sh:name "Manufacturer"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass era:Manufacturer .
+
+<https://astrea.linkeddata.es/shapes#4e3302e73513dfd6dd1834fdd4623fd3> a sh:NodeShape ;
+    rdfs:label "ERA Document"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "Document in any of the ERA systems, e.g. reference document in RINF."@en ;
+    sh:name "ERA Document"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass era:Document .
+
+<https://astrea.linkeddata.es/shapes#51525b16fcd279df4387bb379357e870> a sh:NodeShape ;
+    rdfs:label "Railway location"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "A reference to a specific national railway line."@en ;
+    sh:name "Railway location"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#8f10fb54de844d6b895efef2dfa23ddd> ;
+    sh:targetClass era:LineReference .
+
+<https://astrea.linkeddata.es/shapes#5192bd4012546876e17387cec79301a1> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass foaf:Organization .
+
+<https://astrea.linkeddata.es/shapes#55a05e88e2f1bdf8b52fa7d0eb1efeca> a sh:NodeShape ;
+    rdfs:label "Document" ;
+    rdfs:isDefinedBy foaf: ;
+    sh:description "A document." ;
+    sh:name "Document" ;
+    sh:nodeKind sh:IRI ;
+    sh:not <https://astrea.linkeddata.es/shapes#95367c1d6b9f60d610de8a964de33047>,
+        <https://astrea.linkeddata.es/shapes#d3cf88afd3b47ef599e18cd4ba20545a> ;
+    sh:targetClass foaf:Document .
+
+<https://astrea.linkeddata.es/shapes#5c39ac231aac130ce087ea9ec4dae25b> a sh:NodeShape ;
+    rdfs:label "Operational Point"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA238.htm> ;
+    sh:description "An operational point (OP) means any location for train service operations, where train services may begin and end or change route, and where passenger or freight services may be provided; operational point also means any location at boundaries between Member States or infrastructure managers."@en ;
+    sh:name "Operational Point"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#3a1840a71759183afb146eeb729aedac>,
+        <https://astrea.linkeddata.es/shapes#46aec0f289df7fe0f9eeaea670696a78>,
+        <https://astrea.linkeddata.es/shapes#5cb461f286e9992a3e44fda31189b6a7>,
+        <https://astrea.linkeddata.es/shapes#639ee6ea78ddfabd3057b9b790ac1a5d>,
+        <https://astrea.linkeddata.es/shapes#6543e14c6d336988317e2e4708c9989c>,
+        <https://astrea.linkeddata.es/shapes#ff1ecabefbfb988b7d025dfd817b8cd0> ;
+    sh:targetClass era:OperationalPoint .
+
+<https://astrea.linkeddata.es/shapes#6ace7559c09873d57bb26d2909a563c6> a sh:NodeShape ;
+    rdfs:label "SpatialThing" ;
+    sh:description """Anything with spatial extent, i.e. size, shape, or position.
+ e.g. people, places, bowling balls, as well as abstract areas like cubes.
+""" ;
+    sh:name "SpatialThing" ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass wgs1:SpatialThing .
+
+<https://astrea.linkeddata.es/shapes#73364f473e9282b8e22319be3905e769> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:not <https://astrea.linkeddata.es/shapes#baf2e500f0b9580cab6426c147fd8462> ;
+    sh:targetClass skos:Collection .
+
+<https://astrea.linkeddata.es/shapes#74ac90c9c816d92423aaedea3c4d9dd8> a sh:NodeShape ;
+    rdfs:label "Organization"@en,
+        "organización"@es,
+        "Organisation"@fr,
+        "Organizzazione"@it ;
+    rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
+    sh:description "Represents a collection of people organized together into a community or other social, commercial or political structure. The group has some common purpose or reason for existence which goes beyond the set of people belonging to it and can act as an Agent. Organizations are often decomposable into hierarchical structures.  It is recommended that SKOS lexical labels should be used to label the Organization. In particular `skos:prefLabel` for the primary (possibly legally recognized name), `skos:altLabel` for alternative names (trading names, colloquial names) and `skos:notation` to denote a code from a code list. Alternative names: _Collective_ _Body_ _Org_ _Group_"@en,
+        "Grupo de personas que se organiza en una comunidad u otro tipo de estructura social, comercial o política. Dicho grupo tiene un objetivo o motivo común para su existencia que va más allá del conjunto de personas que lo forman y que puede actuar como “agente”. A menudo las organizaciones se pueden agrupar en estructuras jerárquicas. Se recomienda el uso de etiquetas de SKOS para denominar a cada “organización”. En concreto, `skos:prefLabel` para la denominación principal o recomendada (aquella reconocida legalmente, siempre que sea posible), `skos:altLabel` para denominaciones alternativas (nombre comercial, sigla, denominación por la que se conoce a la organización coloquialmente) y `skos:notation` para referirse al código que identifique a la organización en una lista de códigos. Denominaciones alternativas: _colectivo_ _corporación_ _grupo_"@es,
+        "Représente un groupe de personnes organisées en communauté où tout autre forme de structure sociale, commerciale ou politique. Le groupe a un but commun ou une raison d'être qui va au-delà de la somme des personnes qui en font partie et peut agir en tant que \"Agent\". Les organisations sont souvent décomposables en structures hiérarchisées. Il est recommandé que des labels lexicaux SKOS soient utilisés pour nommer l'Organisation. En particulier `skos:prefLabel` pour le nom principal (en général le nom légal), `skos:altLabel` pour les noms alternatifs (marques, sigles, appellations familières) et `skos:notation` pour indiquer un code provenant d'une liste de code."@fr,
+        "Rappresenta una collezione di persone organizzate all'interno di una communità o di una qualche struttura sociale, commerciale o politica. Il gruppo condivide un obiettivo o una ragione d'essere che va oltre gli stessi membri appartenenti al gruppo e  può agire come un Agent. Le organizzazioni si possono spesso suddividere in strutture gerarchiche. Si raccomanda di usare le label per l'Organization mediante le proprietà di SKOS. In particolare, `skos:prefLabel` per il nome principale (possibilmente un nome legalmente riconosciuto)”, `skos:altLabel` come nome alternativo (denominazione commerciale, denominazione colloquiale) e `skos:notation` per indicare un codice di una lista di codici."@it,
+        "コミュニティー、その他の社会、商業、政治的な構造に共に編入された人々の集合を表わします。グループには、そこに属する人々を超えた、存在に対するある共通の目的や理由があり、エージェント（代理）を務めることができます。組織は、多くの場合、階層構造に分割できます。"@ja ;
+    sh:name "Organization"@en,
+        "organización"@es,
+        "Organisation"@fr,
+        "Organizzazione"@it ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass org:Organization .
+
+<https://astrea.linkeddata.es/shapes#773ee1c13e884ec4f5e6535d912e7461> sh:nodeKind sh:Literal .
+
+<https://astrea.linkeddata.es/shapes#816d6c19c0338e5cfe65936cd2540f6b> a sh:NodeShape ;
+    rdfs:label "Section Of Line"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "A section of line means the part of line between adjacent operational points and may consist of several tracks."@en ;
+    sh:name "Section Of Line"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#13f97d0563e12ab16a2ff96588e64326>,
+        <https://astrea.linkeddata.es/shapes#46aec0f289df7fe0f9eeaea670696a78>,
+        <https://astrea.linkeddata.es/shapes#6e33d75cdc3f1cc45e219137a9e90391>,
+        <https://astrea.linkeddata.es/shapes#8f10fb54de844d6b895efef2dfa23ddd>,
+        <https://astrea.linkeddata.es/shapes#a2241f3905c59fcb01963e32940967b4>,
+        <https://astrea.linkeddata.es/shapes#a9e130dccb092777c408b85b3e020100>,
+        <https://astrea.linkeddata.es/shapes#eaf797487af3491122d45ce11d79f6b0>,
+        <https://astrea.linkeddata.es/shapes#f81001dd2b7222153673908042301163> ;
+    sh:targetClass era:SectionOfLine .
+
+<https://astrea.linkeddata.es/shapes#8c9f0a3ef50fe390869f7c693885d425> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#3348f96caa15fb50d86f0a2231585642> ;
+    sh:targetClass gsp:Feature .
+
+<https://astrea.linkeddata.es/shapes#8fefb06c03c9e7d2614b9a75b13f1efb> a sh:NodeShape ;
+    rdfs:label "ERA Feature"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "Class that encompasses the features that are part of the physical infrastructure (class InfrastructureObject) and the topological objects (class TopologicalObject). It is a subclass of the geographical Feature class that has a spatial representation."@en ;
+    sh:name "ERA Feature"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass era:Feature .
+
+<https://astrea.linkeddata.es/shapes#954c4977bb7f807aff75c0541673b595> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass rdf:Bag .
+
+<https://astrea.linkeddata.es/shapes#9e81a8547fd8cabc79752e243c8d2b67> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass gsp:Geometry .
+
+<https://astrea.linkeddata.es/shapes#9e8fc937658bda7beceb6a3c16537508> a sh:PropertyShape ;
+    rdfs:label "An unambiguous reference to the resource within a given context."@en,
+        "Identifier"@en ;
+    rdfs:isDefinedBy dct: ;
+    sh:datatype rdfs:Literal ;
+    sh:description "An unambiguous reference to the resource within a given context."@en ;
+    sh:name "Identifier"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path dct:identifier .
+
+<https://astrea.linkeddata.es/shapes#a0005af2635b82beb671b40f25536d31> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass rdfs:Resource .
+
+<https://astrea.linkeddata.es/shapes#a217339651c46751634e064a80f8c470> a sh:NodeShape ;
+    rdfs:label "Min axle load vehicle category"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Represents information that indicates the load given in tons depending of the category of vehicle. Its properties are minAxleLoadVehicleCategory and minAxleLoad."@en ;
+    sh:name "Min axle load vehicle category"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass era:MinAxleLoadVehicleCategory .
+
+<https://astrea.linkeddata.es/shapes#a6646857e35dd7bbc53429a21d18ac92> a sh:NodeShape ;
+    rdfs:label "Contact Line System"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "System that is used to transmit electrical energy to road or rail vehicles."@en ;
+    sh:name "Contact Line System"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#1286c42d58b758d1aa787d97a5855c53> ;
+    sh:targetClass era:ContactLineSystem .
+
+<https://astrea.linkeddata.es/shapes#ac9acb58f027a5b7dc3d6bcec51663b6> a sh:NodeShape ;
+    rdfs:label "Vehicle Keeper"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "A company or organization that owns or operates a certain vehicle."@en ;
+    sh:name "Vehicle Keeper"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass era:VehicleKeeper .
+
+<https://astrea.linkeddata.es/shapes#aef1a78016b3598e01dd7671934b50b4> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass skos:ConceptScheme .
+
+<https://astrea.linkeddata.es/shapes#b8840ae319dd17775a4c3ff2c43caeca> sh:nodeKind sh:Literal .
+
+<https://astrea.linkeddata.es/shapes#d9b04e6c04574f5743ee5471fab2e7b2> a sh:NodeShape ;
+    rdfs:label "Infrastructure manager"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso "https://wiki3.railml.org/wiki/CO:infrastructureManager"^^xsd:anyURI ;
+    sh:description "The infrastructure manager owns and operates the railway network and related infrastructure."@en ;
+    sh:name "Infrastructure manager"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#9910e9f30ce63c2421791b8871f9da01> ;
+    sh:targetClass era:InfrastructureManager .
+
+<https://astrea.linkeddata.es/shapes#fac2128062151fc2a13f2a2dee0c5c43> a sh:NodeShape ;
+    rdfs:label "National railway line"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA210.htm> ;
+    sh:description "Railway line within a member state."@en ;
+    sh:name "National railway line"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass era:NationalRailwayLine .
+
+<https://astrea.linkeddata.es/shapes#fe71909ff52cd64113f213306da3fc27> a sh:NodeShape ;
+    rdfs:label "Siding"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "Sidings are all those tracks where running trains in service movements ends and which are not used for operational routing of a train."@en ;
+    sh:name "Siding"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#129fd08e2db8267b2e3495804a860bcc>,
+        <https://astrea.linkeddata.es/shapes#cc8597abe36afd2cc3abb53e195fed87> ;
+    sh:targetClass era:Siding .
+
+<https://astrea.linkeddata.es/shapes#ffeaf0d3664c31215f614a64f5bb45a5> a sh:NodeShape ;
+    rdfs:label "Concept"@en ;
+    rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+    sh:name "Concept"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:not <https://astrea.linkeddata.es/shapes#f5d3515f8cfa02fe182d61cb4248572c> ;
+    sh:targetClass skos:Concept .
+
+<https://astrea.linkeddata.es/shapes#01ed9f28cac5529dac386d0f4f9bc3e0> a sh:PropertyShape ;
+    rdfs:label "Maximum unguided length of fixed obtuse crossings is based on a minimum wheel diameter in service expressed in millimetres."@en,
+        "Minimum wheel diameter for fixed obtuse crossings"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:integer ;
+    sh:description "Maximum unguided length of fixed obtuse crossings is based on a minimum wheel diameter in service expressed in millimetres."@en ;
+    sh:maxCount 1 ;
+    sh:name "Minimum wheel diameter for fixed obtuse crossings"@en ;
+    sh:path era:minimumWheelDiameter ;
+    sh:pattern "[\\-+]?[0-9]+" .
+
+<https://astrea.linkeddata.es/shapes#0939a93e556f2075c634cc048b100271> a sh:PropertyShape ;
+    rdfs:label "ETCS application level related to the track side equipment."@en,
+        "Trackside European Train Control System (ETCS) level"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class era:ETCSLevel ;
+    sh:description "ETCS application level related to the track side equipment."@en ;
+    sh:name "Trackside European Train Control System (ETCS) level"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:hasEtcsLevel .
+
+<https://astrea.linkeddata.es/shapes#0ba33671906d9f55b4cd74004e12ebfb> a sh:PropertyShape ;
+    rdfs:label "Localisation of structures requiring specific checks."@en,
+        "Railway location of structures requiring specific checks"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:double ;
+    sh:description "Localisation of structures requiring specific checks."@en ;
+    sh:name "Railway location of structures requiring specific checks"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:structureCheckLocation ;
+    sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
+
+<https://astrea.linkeddata.es/shapes#1156168d9707500402e4dfc808a6ce76> a sh:PropertyShape ;
+    rdfs:label "Normal running direction"@en,
+        """The normal running direction is:
+- the same as the direction defined by the start and end of the SoL: (N)
+- the opposite to the direction defined by the start and end of the SoL: (O)
+- both directions: (B)"""@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description """The normal running direction is:
+- the same as the direction defined by the start and end of the SoL: (N)
+- the opposite to the direction defined by the start and end of the SoL: (O)
+- both directions: (B)"""@en ;
+    sh:maxCount 1 ;
+    sh:name "Normal running direction"@en ;
+    sh:path era:trackDirection .
+
+<https://astrea.linkeddata.es/shapes#1286c42d58b758d1aa787d97a5855c53> a sh:PropertyShape ;
+    rdfs:label "Indication of the type of the contact line system."@en,
+        "Type of contact line system"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description "Indication of the type of the contact line system."@en ;
+    sh:name "Type of contact line system"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:contactLineSystemType .
+
+<https://astrea.linkeddata.es/shapes#13f97d0563e12ab16a2ff96588e64326> a sh:PropertyShape ;
+    rdfs:label "Operational point at start of section of line"@en,
+        "Unique OP ID at start of section of line (kilometres increasing from start OP to the end OP)."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class era:OperationalPoint ;
+    sh:description "Unique OP ID at start of section of line (kilometres increasing from start OP to the end OP)."@en ;
+    sh:name "Operational point at start of section of line"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:opStart .
+
+<https://astrea.linkeddata.es/shapes#1776c65dacefb9076565b31aa3759044> a sh:PropertyShape ;
+    rdfs:label "Identification of track"@en,
+        "Unique track identification or unique track number within an OP or a section of line."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:string ;
+    sh:description "Unique track identification or unique track number within an OP or a section of line."@en ;
+    sh:maxCount 1 ;
+    sh:name "Identification of track"@en ;
+    sh:path era:trackId ;
+    sh:pattern ".*" .
+
+<https://astrea.linkeddata.es/shapes#2ea1da6023fb9abcf22f722c2f9912da> a sh:PropertyShape ;
+    rdfs:label "ETCS baseline"@en,
+        "ETCS baseline installed lineside."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description "ETCS baseline installed lineside."@en ;
+    sh:name "ETCS baseline"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:etcsBaseline .
+
+<https://astrea.linkeddata.es/shapes#3348f96caa15fb50d86f0a2231585642> a sh:PropertyShape ;
+    rdfs:label """
+      A spatial representation for a given feature.
+    """@en,
+        "hasGeometry"@en ;
+    rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql>,
+        <http://www.opengis.net/spec/geosparql/1.0> ;
+    sh:class gsp:Geometry ;
+    sh:description """
+      A spatial representation for a given feature.
+    """@en ;
+    sh:name "hasGeometry"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path gsp:hasGeometry .
+
+<https://astrea.linkeddata.es/shapes#3bd7dd0cdd64bc5cbfb89117f66a077f> a sh:PropertyShape ;
+    rdfs:label "Infrastructure manager"@en,
+        "Relates any feature implemented in the European railway infrastructure with its infrastructure manager."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class era:InfrastructureManager ;
+    sh:description "Relates any feature implemented in the European railway infrastructure with its infrastructure manager."@en ;
+    sh:name "Infrastructure manager"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:infrastructureMgr .
+
+<https://astrea.linkeddata.es/shapes#3fec82b896780b9006a9dc87f2832b20> a sh:PropertyShape ;
+    rdfs:label "Direction of measurement of trackside HABD"@en,
+        """Specific for the French Italian and Swedish networks.
+Applicable if trackside HABD is not TSI compliant, direction of measurement of trackside Hot Axle Box Detector.
+If the direction of measurement is:
+—	the same as the direction defined by the start and end of the SoL: (N)
+—	the opposite to the direction defined by the start and end of the SoL: (O)
+—	both directions: (B)."""@en,
+        "This property was previously a datatype property with domain Track and range string. As its values are a list of three predefined values, it is now a SKOS."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description """Specific for the French Italian and Swedish networks.
+Applicable if trackside HABD is not TSI compliant, direction of measurement of trackside Hot Axle Box Detector.
+If the direction of measurement is:
+—	the same as the direction defined by the start and end of the SoL: (N)
+—	the opposite to the direction defined by the start and end of the SoL: (O)
+—	both directions: (B)."""@en,
+        "This property was previously a datatype property with domain Track and range string. As its values are a list of three predefined values, it is now a SKOS."@en ;
+    sh:name "Direction of measurement of trackside HABD"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:hotAxleBoxDetectorDirection .
+
+<https://astrea.linkeddata.es/shapes#42197fb8215e90bad23c52db897a2187> a sh:PropertyShape ;
+    rdfs:label "Accepted TSI compliant pantograph heads"@en,
+        "Indication of TSI compliant pantograph heads which are allowed to be used. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/compliant-pantograph-heads/CompliantPantographHeads."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description "Indication of TSI compliant pantograph heads which are allowed to be used. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/compliant-pantograph-heads/CompliantPantographHeads."@en ;
+    sh:name "Accepted TSI compliant pantograph heads"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:tsiPantographHead .
+
+<https://astrea.linkeddata.es/shapes#5cb461f286e9992a3e44fda31189b6a7> a sh:PropertyShape ;
+    rdfs:label "OP primary location code"@en,
+        "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:string ;
+    sh:description "Primary location code developed for information exchange in accordance with the TSIs relating to the telematics applications subsystem."@en ;
+    sh:maxCount 1 ;
+    sh:name "OP primary location code"@en ;
+    sh:path era:tafTAPCode ;
+    sh:pattern ".*" .
+
+<https://astrea.linkeddata.es/shapes#639ee6ea78ddfabd3057b9b790ac1a5d> a sh:PropertyShape ;
+    rdfs:label "Name normally related to the town or village or to traffic control purpose."@en,
+        "Name of operational point"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:string ;
+    sh:description "Name normally related to the town or village or to traffic control purpose."@en ;
+    sh:maxCount 1 ;
+    sh:name "Name of operational point"@en ;
+    sh:path era:opName ;
+    sh:pattern ".*" .
+
+<https://astrea.linkeddata.es/shapes#6543e14c6d336988317e2e4708c9989c> a sh:PropertyShape ;
+    rdfs:label "Code composed of country code and alphanumeric operational point code."@en,
+        "Unique OP ID"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:string ;
+    sh:description "Code composed of country code and alphanumeric operational point code."@en ;
+    sh:maxCount 1 ;
+    sh:name "Unique OP ID"@en ;
+    sh:path era:uopid ;
+    sh:pattern ".*" .
+
+<https://astrea.linkeddata.es/shapes#6e33d75cdc3f1cc45e219137a9e90391> a sh:PropertyShape ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path era:lineNationalId ;
+    sh:qualifiedMaxCount 1 ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape [ sh:class era:NationalRailwayLine ] .
+
+<https://astrea.linkeddata.es/shapes#6e83b234d22ccd8dd8ff90881e4c1580> a sh:PropertyShape ;
+    rdfs:label """Specific for the French, Italian and Swedish networks.
+Trackside hot axle box detector TSI compliant."""@en,
+        "Trackside HABD TSI compliant"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:boolean ;
+    sh:description """Specific for the French, Italian and Swedish networks.
+Trackside hot axle box detector TSI compliant."""@en ;
+    sh:maxCount 1 ;
+    sh:name "Trackside HABD TSI compliant"@en ;
+    sh:path era:hotAxleBoxDetectorTSICompliant ;
+    sh:pattern "true|false|0|1" .
+
+<https://astrea.linkeddata.es/shapes#8ec3df6128b290bfc40e0811a9b0d3d5> a sh:PropertyShape ;
+    rdfs:label "ETCS application level related to the track side equipment."@en,
+        "European Train Control System (ETCS) level"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description "ETCS application level related to the track side equipment."@en ;
+    sh:name "European Train Control System (ETCS) level"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:etcsLevelType .
+
+<https://astrea.linkeddata.es/shapes#95367c1d6b9f60d610de8a964de33047> sh:class foaf:Project .
+
+<https://astrea.linkeddata.es/shapes#97346b29f9e8e50d6cd9b5d35df5ba70> a sh:PropertyShape ;
+    rdfs:label "Contact line system present in the section of line."@en,
+        "Track contact line system"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class era:ContactLineSystem ;
+    sh:description "Contact line system present in the section of line."@en ;
+    sh:name "Track contact line system"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:hasContactLineSystem .
+
+<https://astrea.linkeddata.es/shapes#9910e9f30ce63c2421791b8871f9da01> a sh:PropertyShape ;
+    rdfs:label "Infrastructure manager (IM)'s code"@en,
+        "Infrastructure manager means anybody or undertaking that is responsible in particular for establishing and maintaining railway infrastructure or a part thereof."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:string ;
+    sh:description "Infrastructure manager means anybody or undertaking that is responsible in particular for establishing and maintaining railway infrastructure or a part thereof."@en ;
+    sh:maxCount 1 ;
+    sh:name "Infrastructure manager (IM)'s code"@en ;
+    sh:path era:imCode ;
+    sh:pattern ".*" .
+
+<https://astrea.linkeddata.es/shapes#a2241f3905c59fcb01963e32940967b4> a sh:PropertyShape ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path era:opStart ;
+    sh:qualifiedMaxCount 1 ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape [ sh:class era:OperationalPoint ] .
+
+<https://astrea.linkeddata.es/shapes#a9e130dccb092777c408b85b3e020100> a sh:PropertyShape ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path era:opEnd ;
+    sh:qualifiedMaxCount 1 ;
+    sh:qualifiedMinCount 1 ;
+    sh:qualifiedValueShape [ sh:class era:OperationalPoint ] .
+
+<https://astrea.linkeddata.es/shapes#b33e06a11276058e45ebadcf99eae61c> a sh:PropertyShape ;
+    rdfs:label "EC declaration of verification for track relating to compliance with the requirements from TSIs applicable to energy subsystem"@en,
+        "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:string ;
+    sh:description "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."@en ;
+    sh:name "EC declaration of verification for track relating to compliance with the requirements from TSIs applicable to energy subsystem"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:verificationENE ;
+    sh:pattern ".*" .
+
+<https://astrea.linkeddata.es/shapes#baf2e500f0b9580cab6426c147fd8462> sh:class skos:Concept .
+
+<https://astrea.linkeddata.es/shapes#c5cef7a799b59419e4eeffcd691b8782> a sh:PropertyShape ;
+    rdfs:label "In country"@en,
+        "Indicates the country in which an entity resides."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description "Indicates the country in which an entity resides."@en ;
+    sh:name "In country"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:inCountry .
+
+<https://astrea.linkeddata.es/shapes#cc8597abe36afd2cc3abb53e195fed87> a sh:PropertyShape ;
+    rdfs:label "Identification of siding"@en,
+        "Unique siding identification or number within an Operational Point."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:string ;
+    sh:description "Unique siding identification or number within an Operational Point."@en ;
+    sh:maxCount 1 ;
+    sh:name "Identification of siding"@en ;
+    sh:path era:sidingId ;
+    sh:pattern ".*" .
+
+<https://astrea.linkeddata.es/shapes#d3cf88afd3b47ef599e18cd4ba20545a> sh:class foaf:Organization .
+
+<https://astrea.linkeddata.es/shapes#eaf797487af3491122d45ce11d79f6b0> a sh:PropertyShape ;
+    rdfs:label "Kind of section of line expressing size of presented data which depends on fact whether it connects OPs generated by division of a big node into several OPs or not."@en,
+        "Nature of Section of Line"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description "Kind of section of line expressing size of presented data which depends on fact whether it connects OPs generated by division of a big node into several OPs or not."@en ;
+    sh:maxCount 1 ;
+    sh:name "Nature of Section of Line"@en ;
+    sh:path era:solNature .
+
+<https://astrea.linkeddata.es/shapes#eca43d93a2d42f99922b8e492e5e48d8> a sh:PropertyShape ;
+    rdfs:label "Category of line"@en,
+        "Classification of a line according to the TSI INF."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description "Classification of a line according to the TSI INF."@en ;
+    sh:name "Category of line"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:lineCategory .
+
+<https://astrea.linkeddata.es/shapes#f5d3515f8cfa02fe182d61cb4248572c> sh:class skos:ConceptScheme .
+
+<https://astrea.linkeddata.es/shapes#f81001dd2b7222153673908042301163> a sh:PropertyShape ;
+    rdfs:label "Operational point at end of section of line"@en,
+        "Unique OP ID at end of section of line (kilometres increasing from start OP to the end OP)."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class era:OperationalPoint ;
+    sh:description "Unique OP ID at end of section of line (kilometres increasing from start OP to the end OP)."@en ;
+    sh:name "Operational point at end of section of line"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:opEnd .
+
+<https://astrea.linkeddata.es/shapes#fad207bf6f6a3cb708c549f5922b19bb> a sh:PropertyShape ;
+    rdfs:label "Indicates a relationship with a national railway line at a specific kilometer point."@en,
+        "Railway location of an infrastructure object"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class era:LineReference ;
+    sh:description "Indicates a relationship with a national railway line at a specific kilometer point."@en ;
+    sh:name "Railway location of an infrastructure object"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:lineReference .
+
+<https://astrea.linkeddata.es/shapes#ff1ecabefbfb988b7d025dfd817b8cd0> a sh:PropertyShape ;
+    rdfs:label "Type of facility in relation to the dominating operational functions."@en,
+        "Type of operational point"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description "Type of facility in relation to the dominating operational functions."@en ;
+    sh:maxCount 1 ;
+    sh:name "Type of operational point"@en ;
+    sh:path era:opType .
+
+<https://astrea.linkeddata.es/shapes#129fd08e2db8267b2e3495804a860bcc> a sh:PropertyShape ;
+    rdfs:label "Indicates the part of the trans-European network the (track, platform, siding) belongs to."@en,
+        "Trans-European Network (TEN) classification (of track, of platform, of siding)"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class skos:Concept ;
+    sh:description "Indicates the part of the trans-European network the (track, platform, siding) belongs to."@en ;
+    sh:name "Trans-European Network (TEN) classification (of track, of platform, of siding)"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:tenClassification .
+
+<https://astrea.linkeddata.es/shapes#3a1840a71759183afb146eeb729aedac> a sh:PropertyShape ;
+    rdfs:label "Existence of rules and restrictions of a strictly local nature"@en,
+        "Existence of rules and restrictions of a strictly local nature."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:boolean ;
+    sh:description "Existence of rules and restrictions of a strictly local nature."@en ;
+    sh:name "Existence of rules and restrictions of a strictly local nature"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:localRulesOrRestrictions ;
+    sh:pattern "true|false|0|1" .
+
+<https://astrea.linkeddata.es/shapes#46aec0f289df7fe0f9eeaea670696a78> a sh:PropertyShape ;
+    rdfs:label "Reference to a related railway track."@en,
+        "Track"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class era:Track ;
+    sh:description "Reference to a related railway track."@en ;
+    sh:name "Track"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:track .
+
+<https://astrea.linkeddata.es/shapes#8f10fb54de844d6b895efef2dfa23ddd> a sh:PropertyShape ;
+    rdfs:label "National line identification"@en,
+        "Unique line identification or unique line number within Member State."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class era:NationalRailwayLine ;
+    sh:description "Unique line identification or unique line number within Member State."@en ;
+    sh:maxCount 1 ;
+    sh:name "National line identification"@en ;
+    sh:path era:lineNationalId .
+

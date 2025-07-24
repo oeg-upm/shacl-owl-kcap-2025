@@ -1,0 +1,72 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+#########################################
+# Shape for Acceleration level crossing
+#########################################
+
+era-sh:RunningTrackShape  
+    a sh:NodeShape ;
+    sh:targetClass era:RunningTrack .
+
+era-sh:CommonCharacteristicsSubsetShape
+	a sh:NodeShape ;
+	sh:targetClass era:CommonCharacteristicsSubset .  
+
+
+# accelerationLevelCrossing: # 1.1.1.1.7.3
+era-sh:RunningTrackShape sh:property era-sh:AccelerationLevelCrossing.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:AccelerationLevelCrossing.
+era-sh:AccelerationLevelCrossing
+	a sh:PropertyShape ; 
+    era:affectedProperty era:accelerationLevelCrossing ;
+    era:affectedClass  era:RunningTrack;
+    era:scope "local";   
+	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve."@en ;
+	era:rinfIndex "1.1.1.1.7.3" ;
+	sh:path era:accelerationLevelCrossing ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+    sh:class era:Document;
+	sh:severity sh:Violation ;
+	sh:message "accelerationLevelCrossing (1.1.1.1.7.3): The track or subset with common characteristics must have at most one acceleration level crossing value that is a Document. This error may be due to having more than one value or having a value that is not an instance of Document."@en .
+
+
+# 1.1.1.1.7.3	accelerationLevelCrossing applicability
+era-sh:RunningTrackShape sh:sparql era-sh:AccelerationLevelCrossingApplicability .
+era-sh:CommonCharacteristicsSubsetShape sh:sparql era-sh:AccelerationLevelCrossingApplicability.
+era-sh:AccelerationLevelCrossingApplicability
+	a sh:SPARQLConstraint ;
+    era:affectedProperty era:accelerationLevelCrossing;
+    era:affectedClass era:RunningTrack;
+    era:scope "local";
+	rdfs:comment "Existence of limit for acceleration of train if stopping or recovering speed close to a level crossing expressed in a specific reference acceleration curve."@en;
+	era:rinfIndex "1.1.1.1.7.3" ;
+	sh:severity sh:Violation ;
+    sh:message "accelerationLevelCrossing (1.1.1.1.7.3): This error is due to the track or subset with common characteristics {?trackLabel} , violating the rule: Applicable only when selected value of parameter 1.1.1.1.7.2 is ‘Y’"@en ;
+    sh:prefixes era:;
+	sh:select """
+    PREFIX era: <http://data.europa.eu/949/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    SELECT DISTINCT $this ?trackLabel
+			WHERE {
+                
+                $this rdfs:label ?trackLabel .
+                FILTER EXISTS {$this era:hasLevelCrossings ?value} .  			
+                FILTER NOT EXISTS {$this era:accelerationLevelCrossing ?value} . 
+            }
+			""" .
+
+
+
+
+

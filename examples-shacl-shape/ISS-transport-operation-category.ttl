@@ -1,0 +1,37 @@
+@prefix iss-sh: <http://data.europa.eu/949/iss/shapes/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix iss: <http://data.europa.eu/949/iss/> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+
+iss-sh:SimpleReportSafetyRelatedEventShape 
+    a sh:NodeShape ;
+    sh:targetClass iss:SimpleReportSafetyRelatedEvent.
+
+iss-sh:TransportOperationCategorySRSKOS
+  sh:class skos:Concept ;
+  sh:severity sh:violation ;
+  era:affectedProperty iss:transportOperationCategory ;
+  sh:property iss-sh:TransportOperationCategorySRSKOSinScheme ;
+  sh:path iss:transportOperationCategory ;
+  a sh:PropertyShape ;
+  era:affectedClass iss:SimpleReportSafetyRelatedEvent ;
+  sh:message "transportOperationCategory: The instance of SimpleReportSafetyRelatedEvent has a transportOperationCategory value that is not a SKOS concept."@en;
+  era:scope "local".
+
+iss-sh:TransportOperationCategorySRSKOSinScheme
+  sh:severity sh:violation ;
+  era:scope "local";
+  sh:hasValue <http://data.europa.eu/949/iss/concepts/transport-operation-categories/TransportOperationCategories> ;
+  sh:path skos:inScheme ;
+  sh:message "transportOperationCategory: The instance of SimpleReportSafetyRelatedEvent has a transportOperationCategory value that is not one of the predefined values and cannot be converted into a SKOS concept on this list: http://data.europa.eu/949/iss/concepts/transport-operation-categories/TransportOperationCategories."@en;
+  era:affectedClass iss:SimpleReportSafetyRelatedEvent ;
+  era:affectedProperty iss:transportOperationCategory ;
+  a sh:PropertyShape .

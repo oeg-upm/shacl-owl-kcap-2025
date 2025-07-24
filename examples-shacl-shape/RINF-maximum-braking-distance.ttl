@@ -1,0 +1,43 @@
+@prefix era-sh: <http://data.europa.eu/949/shapes/> .
+@prefix ex: <http://example.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix era: <http://data.europa.eu/949/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+
+####################################
+# Shape for Maximum Braking Distance 
+####################################
+
+era-sh:RunningTrackShape  
+    a sh:NodeShape ;
+    sh:targetClass era:RunningTrack .
+
+era-sh:CommonCharacteristicsSubsetShape
+	a sh:NodeShape ;
+	sh:targetClass era:CommonCharacteristicsSubset .  
+
+# maximumBrakingDistance: # 1.1.1.3.11.1
+era-sh:RunningTrackShape sh:property era-sh:MaximumBrakingDistance.
+era-sh:CommonCharacteristicsSubsetShape sh:property era-sh:MaximumBrakingDistance.
+era-sh:MaximumBrakingDistance
+	a sh:PropertyShape ; era:affectedProperty era:maximumBrakingDistance  ;     era:affectedClass  era:RunningTrack;     era:scope "local";     
+	rdfs:comment "The maximum value of the braking distance [in metres] of a train shall be given for the maximum line speed."@en ;
+	era:rinfIndex "1.1.1.3.11.1" ;
+	sh:path era:maximumBrakingDistance ;
+
+	sh:maxCount 1 ;
+	sh:datatype xsd:integer ;
+	sh:pattern "^([1-9]\\d{1,4}|[0-9])$" ;
+	sh:severity sh:Violation ;
+	sh:message "maximumBrakingDistance (1.1.1.3.11.1): The track or subset with common characteristics must define at most one value of the maximum value of the braking distance [in metres] of a train and it is an integer. This error may be due to the track having more than one value or to having a value that is not an integer."@en .
+
+
+
+
+
+
